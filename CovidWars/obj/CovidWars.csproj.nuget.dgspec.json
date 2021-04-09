@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/leo/Desktop/CovidWars/CovidWars.csproj": {}
+    "/Users/leo/Desktop/Workspace/CovidWars/CovidWars.csproj": {}
   },
   "projects": {
-    "/Users/leo/Desktop/CovidWars/CovidWars.csproj": {
+    "/Users/leo/Desktop/Workspace/CovidWars/CovidWars.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/leo/Desktop/CovidWars/CovidWars.csproj",
+        "projectUniqueName": "/Users/leo/Desktop/Workspace/CovidWars/CovidWars.csproj",
         "projectName": "CovidWars",
-        "projectPath": "/Users/leo/Desktop/CovidWars/CovidWars.csproj",
+        "projectPath": "/Users/leo/Desktop/Workspace/CovidWars/CovidWars.csproj",
         "packagesPath": "/Users/leo/.nuget/packages/",
-        "outputPath": "/Users/leo/Desktop/CovidWars/obj/",
+        "outputPath": "/Users/leo/Desktop/Workspace/CovidWars/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/leo/.nuget/NuGet/NuGet.Config"

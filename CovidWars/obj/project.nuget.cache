@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dm0LmuqVigXky/BzdlOlQAa4a0CWEJ+ontnOGwqgaS7AnbAyceVOgb/VS7Cjt6Sq4LclPfMMeEU9CfQH593OPg==",
+  "dgSpecHash": "CNlJ9BY3pR0OBjuKHRS/1R9rASH0kCP5dW91+Huq9WcJHUe6QApJV7XgyMGh6BC4XsxqKxks9z8A4ux9eJr+xA==",
   "success": true,
-  "projectFilePath": "/Users/leo/Desktop/CovidWars/CovidWars.csproj",
+  "projectFilePath": "/Users/leo/Desktop/Workspace/CovidWars/CovidWars.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

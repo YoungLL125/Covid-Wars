@@ -40,8 +40,11 @@ namespace CovidWars
 
             // Function 3 Vaccine
             Global.vaccineSpent = 0;
-            Global.developing = false;
             Global.vaccineDevSpent = 0;
+            Global.vaccineProdSpent = 0;
+            Global.developing = false;
+            Global.developed = false;
+            Global.refunded = false;
 
             Menu.Intro(false);
         }

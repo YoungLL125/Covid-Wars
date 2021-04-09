@@ -28,14 +28,24 @@ class Game{
 
       // Function 3 Vaccinations
       Global.vaccineSpent = 0;
-      Global.vaccineDevSpent = 0;
-      if (Global.vaccineDevWeek > 0){
-        Global.vaccineDevWeek = Global.vaccineDevWeek - 1;
+      Global.developing = Global.developingCurrent;
+
+      if (Global.vaccineDevWeek >= 1 && Global.developing == true && Global.refunded == false){
+        if (Global.vaccineDevWeek == 1){
+          Global.developing = false;
+          Global.developed = true;
+          Global.vaccineDevSpent = 0;
+        }
+        else{
+          Global.vaccineDevWeek = Global.vaccineDevWeek - 1;
+        }
+        
       }
 
-
-
-      Global.developing = Global.developingCurrent;
+      if (Global.refunded){
+        Global.refunded = false;
+        Global.vaccineDevSpent = 0;
+      }
 
 
       // Main Variable Changing Methods

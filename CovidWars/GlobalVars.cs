@@ -63,9 +63,22 @@ class Global{
   public static double genHealthSpent;
 
   // Function 3 Vaccination
+
+  // Vaccine Development
   public static double vaccineSpent;
   public static double vaccineDevSpent;
+  public static double vaccineDevWeek;
   public static bool developing;
   public static bool developingCurrent;
-  public static double vaccineDevWeek;
+  public static bool developed;
+  public static bool refunded;
+
+
+  // Vaccine Production
+  public static double vaccineProdSpent;
+  public static double vaccineProdRate;
+
+
+  
+  
 }

@@ -41,7 +41,7 @@ class Menu{
     }
     Console.WriteLine("");
     Console.Write("\t(3) Vaccination         ");
-    if (Global.vaccineSpent > 0){
+    if (Global.vaccineSpent != 0){
       Console.ForegroundColor = ConsoleColor.Green;
       Console.Write("  Spending:  ${0} MM", Global.vaccineSpent);
       Console.ForegroundColor = ConsoleColor.Yellow;
