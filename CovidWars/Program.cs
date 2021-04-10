@@ -14,6 +14,7 @@ namespace CovidWars
             Global.week = 0;
             Global.totalMoney = 40000;
             Global.totalSpent = 0;
+            Global.overspent = false;
             Global.population = Game.Rounding(Rnd.Dist(5000000, 2000), 0);
             Global.popGrowthYear = Rnd.Dist(0.01, 0.0001);
             Global.popGrowth = Global.popGrowthYear/(52.14286);
@@ -30,6 +31,9 @@ namespace CovidWars
             // Weekly Revenue
             Global.weekRevenue = Game.Rounding(Rnd.Dist(125, 2), 2) * Global.population * Global.happiness/100 * 0.000001;
 
+            // Game End
+            Global.gameEnd = false;
+
             // Function 1 CovidAnn
             Global.covidAnnPurch = false;
             Global.covidAnnPurchCurrent = false;
@@ -39,12 +43,20 @@ namespace CovidWars
             Global.genHealthSpent = 360;
 
             // Function 3 Vaccine
+            // Vaccine Development
             Global.vaccineSpent = 0;
             Global.vaccineDevSpent = 0;
-            Global.vaccineProdSpent = 0;
             Global.developing = false;
             Global.developed = false;
             Global.refunded = false;
+
+            // Vaccine Production
+            Global.vaccineProdSpent = 0;
+            Global.vaccineNum = 0;
+
+            // Vaccine Implementation
+            Global.vaccineImpSpent = 0;
+            Global.vaccineImpRate = 0;
 
             Menu.Intro(false);
         }

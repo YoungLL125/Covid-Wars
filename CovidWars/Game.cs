@@ -11,7 +11,10 @@ class Game{
     // Calculates Total Money Spent
     Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent;
 
-    if (Global.totalMoney >= Global.totalSpent){
+    if (Global.totalMoney >= Global.totalSpent && Global.gameEnd == false){
+
+      // Tells program user hasn't spent too much money
+      Global.overspent = false;
 
       /*
       Function Calculations
@@ -27,7 +30,9 @@ class Game{
       Global.alertLvl = Global.alertLvlCurrent;
 
       // Function 3 Vaccinations
-      Global.vaccineSpent = 0;
+      Global.vaccineSpent = Global.vaccineProdSpent + Global.vaccineImpSpent;
+
+      // Vaccine Development
       Global.developing = Global.developingCurrent;
 
       if (Global.vaccineDevWeek >= 1 && Global.developing == true && Global.refunded == false){
@@ -47,12 +52,40 @@ class Game{
         Global.vaccineDevSpent = 0;
       }
 
+      // Vaccine Production
+      if (Global.vaccineProdRate > 0){
+        Global.vaccineNum = Global.vaccineNum + Rounding(Rnd.Dist(Global.vaccineProdRate, 35), 0);
+      }
+
+      // Vaccine Implementation
+
+      if (Global.vaccineNum >= Global.vaccineImpRate){
+        Global.vaccineNum = Global.vaccineNum - Global.vaccineImpRate;
+        Global.popVaccin = Global.popVaccin + Rounding(Global.vaccineImpRate * Rnd.Dist(0.95, 0.02), 0);
+      }
+      else if (Global.vaccineNum > 0){
+        Global.popVaccin = Global.popVaccin + Global.vaccineNum;
+        Global.vaccineNum = 0;
+        Global.vaccineImpRate = 0;
+        Global.vaccineImpSpent = 0;
+      }
+      else{
+        Global.vaccineNum = 0;
+        Global.vaccineImpRate = 0;
+        Global.vaccineImpSpent = 0;
+      }
+
+      
+      
+
+
+
 
       // Main Variable Changing Methods
       Global.rValue = RValue(Global.alertLvl);
 
       /*
-      Main Background Functions
+      Main Background Calculations
       */
 
       // Week incrementer
@@ -102,7 +135,7 @@ class Game{
         Global.consecLock = 0;
       }
 
-      // Decreases happiness by 10% due to prolonged lockdown
+      // Decreases happiness due to prolonged lockdown
       if (Global.consecLock > Rnd.Dist(8, 0.35)){
         Global.happiness = Global.happiness * Rnd.Dist(0.9, 0.0035);
       }
@@ -139,9 +172,13 @@ class Game{
       // Constraints
       if (Global.population <= 0){
         Global.population = 0;
+        Global.gameEnd = true;
       }
-      if (Global.activeCases >= Global.population){
-        Global.activeCases = Global.population;
+      if (Global.popVaccin >= Global.population){
+        Global.popVaccin = Global.population;
+      }
+      if (Global.activeCases >= Global.population - Global.popVaccin){
+        Global.activeCases = Global.population - Global.popVaccin;
       }
       if (Global.activeCases <= 0){
         Global.activeCases = 0;
@@ -153,9 +190,49 @@ class Game{
         Global.deathsWeek = 0;
       }
 
-    }
+      if (Global.gameEnd == true){
+        Console.Clear();
 
-    Menu.MenuProg();
+        Stats.Draw();
+
+        Console.WriteLine("");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\tEveryone is dead");
+        Console.WriteLine("");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("\tNew Zealand has survived for {0} weeks", Global.week);
+        Console.WriteLine("\tThank you for playing Covid Wars");
+        Console.WriteLine("");
+        Console.WriteLine("\t(0) Enter 0 to restart");
+        Console.WriteLine("\tEnter anything else to Exit");
+        Console.WriteLine("");
+        Console.WriteLine("");
+
+        string input = "";
+
+        Console.Write("Your Input: ");
+
+        input = Console.ReadLine();
+
+        if (input == "0"){
+          Func0.Restart();
+        }
+        Console.WriteLine("");
+
+
+      }
+      else{
+        Menu.MenuProg();
+      }
+
+    }
+    else{
+      // User has spent too much money
+      if (Global.totalSpent > Global.totalMoney){
+        Global.overspent = true;
+      }
+      Menu.MenuProg();
+    }
   }
 
   // Rounds decimal number to specified position

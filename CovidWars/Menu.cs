@@ -59,9 +59,9 @@ class Menu{
     Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("=========================================================");
 
-    if (Global.totalMoney < Global.totalSpent){
+    if (Global.overspent){
       Console.ForegroundColor = ConsoleColor.Red;
-      Console.WriteLine("The total money spent '${0}' is greater than the amount of money avaliable ${1}", Global.totalSpent, Global.totalMoney);
+      Console.WriteLine("The total money spent (${0}) is greater than \nthe amount of money avaliable (${1})", Global.totalSpent, Global.totalMoney);
     }
 
     Console.ForegroundColor = ConsoleColor.Yellow;

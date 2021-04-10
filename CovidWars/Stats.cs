@@ -100,6 +100,15 @@ class Stats{
     Console.ForegroundColor = ConsoleColor.DarkRed;
     Console.WriteLine("\t      Death Rate:\t{0}%", Game.Rounding(Global.dieRate, 2));
     Console.WriteLine("");
+    if (Global.vaccineNum > 0){
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.WriteLine("\t    No. Vaccines:\t{0}", Global.vaccineNum);
+    }
+    if (Global.popVaccin > 0){
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.WriteLine("   No. People Vaccinated:\t{0}", Global.popVaccin);
+    }
+    Console.WriteLine("");
     Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("=========================================================");
     Console.WriteLine("");

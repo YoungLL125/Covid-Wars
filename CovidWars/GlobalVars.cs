@@ -21,6 +21,7 @@ class Global{
   public static double totalMoney;
   public static double weekRevenue;
   public static double totalSpent;
+  public static bool overspent;
 
   // Population
   public static double population;
@@ -44,6 +45,12 @@ class Global{
 
   // Consecutive weeks of Lockdown after Active cases reaches 0
   public static double consecLock;
+
+  // Vaccinated people
+  public static double popVaccin;
+
+  // Game End
+  public static bool gameEnd;
 
 
   /*
@@ -75,8 +82,14 @@ class Global{
 
 
   // Vaccine Production
+  public static double vaccineNum;
   public static double vaccineProdSpent;
   public static double vaccineProdRate;
+  
+
+  // Vaccine Implementation
+  public static double vaccineImpSpent;
+  public static double vaccineImpRate;
 
 
   
