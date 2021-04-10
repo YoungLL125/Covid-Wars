@@ -9,7 +9,7 @@ class Game{
     Console.Clear();
 
     // Calculates Total Money Spent
-    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent;
+    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent + Global.borderSpent;
 
     if (Global.totalMoney >= Global.totalSpent && Global.gameEnd == false){
 
@@ -95,17 +95,29 @@ class Game{
       Global.totalMoney = Global.totalMoney + Global.weekRevenue;
 
       // Active Cases
+
       if (Global.alertLvl <= 4 && Global.alertLvl >= 1){
         Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.305);
       }
       else{
-        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.6);
+        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.6);  
       }
       
+      Random random = new Random();
+
+      Global.borderCases = Rounding(random.Next(1,101), 0);
+
+      if (Global.borderCases > Global.borderCap){
+        Global.activeCases = Global.activeCases + (Global.borderCases - Global.borderCap);
+      }
+
       
 
+      // Total Active Cases
+      Global.totalActiveCases = Global.activeCases + Global.borderCases;
+
       // Total Cases
-      Global.totalCases = Global.totalCases + Global.activeCases;
+      Global.totalCases = Global.totalCases + Global.activeCases + Global.borderCases;
 
       // Death Rate
       Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
@@ -183,6 +195,9 @@ class Game{
       if (Global.activeCases <= 0){
         Global.activeCases = 0;
       }
+      if (Global.totalActiveCases - Global.borderCases > Global.population){
+        Global.totalActiveCases = Global.borderCases + Global.activeCases;
+      }
       if (Global.deaths <= 0){
         Global.deaths = 0;
       }
@@ -198,6 +213,7 @@ class Game{
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("\tEveryone is dead");
+        Console.WriteLine("\tThe virus has won");
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("\tNew Zealand has survived for {0} weeks", Global.week);
@@ -218,11 +234,78 @@ class Game{
           Func0.Restart();
         }
         Console.WriteLine("");
-
-
       }
       else{
-        Menu.MenuProg();
+        if (Global.week == 10000){
+          Console.Clear();
+
+          Stats.Draw();
+
+          Console.WriteLine("");
+
+          Console.ForegroundColor = ConsoleColor.Yellow;
+          Console.WriteLine("\tYou Win!");
+          Console.WriteLine("\tNew Zealand has successfully survived for {0} weeks", Global.week);
+          Console.WriteLine("");
+          Console.WriteLine("\tAfter {0} weeks, Covid-19 has finally been defeated", Global.week);
+          Console.WriteLine("\tAll {0} people who have died in the process", Global.deaths);
+          Console.WriteLine("\tshall be commemorated with a full 10 seconds");
+          Console.Write("\n\n\tPress Enter to commence commemoration");
+
+          Console.ReadLine();
+
+          for (int i = 1; i <= 10; i++){
+            Console.WriteLine("\t" + i);
+            Thread.Sleep(1000);
+          }
+
+          Console.WriteLine("");
+
+          Console.WriteLine("\nClick Enter to Continue...");
+          Console.ReadLine();
+          
+          Menu.CovidWars();
+
+          Console.WriteLine("\nThank you for playing Covid Wars");
+
+          Console.WriteLine("");
+          Console.WriteLine("\t(0) Enter 0 to Exit");
+          Console.WriteLine("\t(1) Enter 1 to continue game");
+          
+
+          bool check = false;
+          string input = "";
+
+          while (!check){
+            Console.WriteLine("");
+            Console.WriteLine("Your input: ");
+            input = Console.ReadLine();
+            if (input == "0" || input == "1"){
+              check = true;
+            }
+            else{
+              Console.WriteLine("Error: {0} is not a valid input", input);
+            }
+          }
+
+          if (input == "1"){
+            Menu.MenuProg();
+          }
+          else{
+            Console.WriteLine("");
+          }
+
+
+
+
+
+
+
+        }
+        else{
+          Menu.MenuProg();
+        }
+        
       }
 
     }

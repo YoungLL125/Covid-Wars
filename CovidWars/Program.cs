@@ -22,6 +22,8 @@ namespace CovidWars
             Global.rValue = Game.Rounding(Rnd.Dist(2.5, 0.1666667), 2);
             Global.totalCases = 3;
             Global.activeCases = 3;
+            Global.borderCases = 3;
+            Global.totalActiveCases = 3;
             Global.deaths = 0;
             Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
 
@@ -57,6 +59,9 @@ namespace CovidWars
             // Vaccine Implementation
             Global.vaccineImpSpent = 0;
             Global.vaccineImpRate = 0;
+
+            // Function 4 Border
+            Global.borderCap = 0;
 
             Menu.Intro(false);
         }

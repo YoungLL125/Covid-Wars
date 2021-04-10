@@ -80,8 +80,11 @@ class Stats{
     else{
       Console.ForegroundColor = ConsoleColor.Red;
     }
-    Console.WriteLine("\t    Active Cases:\t{0}", Game.Rounding(Global.activeCases, 0));
+    Console.WriteLine("\t Community Cases:\t{0}", Game.Rounding(Global.activeCases, 0));
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine("\t    Border Cases:\t{0}", Game.Rounding(Global.borderCases, 0));
     Console.ForegroundColor = ConsoleColor.DarkYellow;
+    Console.WriteLine("\t    Active Cases:\t{0}", Game.Rounding(Global.totalActiveCases, 0));
     Console.WriteLine("\t     Total Cases:\t{0}", Game.Rounding(Global.totalCases, 0));
     if (Global.deathsWeek == 0){
       Console.ForegroundColor = ConsoleColor.Green;

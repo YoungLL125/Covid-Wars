@@ -37,6 +37,8 @@ class Global{
   // Covid Cases
   public static double totalCases;
   public static double activeCases;
+  public static double borderCases;
+  public static double totalActiveCases;
 
   // Death
   public static double deaths;
@@ -90,8 +92,9 @@ class Global{
   // Vaccine Implementation
   public static double vaccineImpSpent;
   public static double vaccineImpRate;
-
-
   
-  
+
+  // Function 4 Border Restrictions
+  public static double borderSpent;
+  public static double borderCap;
 }

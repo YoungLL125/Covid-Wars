@@ -47,14 +47,21 @@ class Menu{
       Console.ForegroundColor = ConsoleColor.Yellow;
     }
     Console.WriteLine("");
-    Console.WriteLine("\t(4) Defense");
-    Console.WriteLine("\t(5) Health Education");
+    Console.Write("\t(4) Border Control      ");
+    if (Global.borderSpent > 0){
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.Write("  Spending:  ${0} MM", Global.borderSpent);
+      Console.ForegroundColor = ConsoleColor.Yellow;
+    }
+    Console.WriteLine("");
+    Console.WriteLine("\t(5) Defense");
+    Console.WriteLine("\t(6) Health Education");
     Console.WriteLine("");
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine(" Other:");
     Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine("\t(6) Return to Introduction");
-    Console.WriteLine("\t(7) Help");
+    Console.WriteLine("\t(7) Return to Introduction");
+    Console.WriteLine("\t(8) Help");
     Console.WriteLine("");
     Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("=========================================================");
@@ -111,7 +118,7 @@ class Menu{
       rawInput = Console.ReadLine();
       try{
         input = Convert.ToChar(rawInput);
-        if (input >= 49 && input <= 55){
+        if (input >= 49 && input <= 56){
           check = true;
         }
         else{
@@ -143,11 +150,14 @@ class Menu{
         Func3.VaccineProg();
         break;
       case '4':
+        Func4.BorderProg();
+        break;
       case '5':
       case '6':
+      case '7':
         Intro(true);
         break;
-      case '7':
+      case '8':
         Help();
         break;
       default:
