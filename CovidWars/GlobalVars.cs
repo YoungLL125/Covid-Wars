@@ -87,6 +87,9 @@ class Global{
   public static bool developingCurrent;
   public static bool developed;
   public static bool refunded;
+  public static double developedWeeks;
+  public static double vaccineExpiryNum;
+  public static bool vaccineExpired;
 
 
   // Vaccine Production

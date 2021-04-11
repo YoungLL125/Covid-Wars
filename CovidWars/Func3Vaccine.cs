@@ -27,7 +27,7 @@ class Func3{
         Console.WriteLine(" Other:");
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("\t(4) Return to Main Menu");
-        if (Global.vaccineSpent > 0 && Global.developing == false || Global.vaccineSpent < 0){
+        if (Global.vaccineSpent > 0 || Global.vaccineSpent < 0){
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\t\t\tSpending:\t${0} million", Global.vaccineSpent);
         }
@@ -133,8 +133,8 @@ class Func3{
         else{
             Console.WriteLine("\tWarning: There is no avaliable vaccine");
             Console.WriteLine("\tA vaccine hasn't been developed yet...");
-            Console.WriteLine("\tOr, the virus may have mutated");
-            Console.WriteLine("\tPlease develop a new vaccine in the Vaccine Development");
+            Console.WriteLine("\tOr the virus may have mutated");
+            Console.WriteLine("\tPlease develop a new vaccine in Vaccine Development");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" Other:");
             Console.ForegroundColor = ConsoleColor.Yellow;

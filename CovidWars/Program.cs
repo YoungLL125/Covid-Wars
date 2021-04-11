@@ -58,6 +58,9 @@ namespace CovidWars
             Global.developing = false;
             Global.developed = false;
             Global.refunded = false;
+            Global.developedWeeks = 0;
+            Global.vaccineExpiryNum = 0;
+            Global.vaccineExpired = false;
 
             // Vaccine Production
             Global.vaccineProdSpent = 0;

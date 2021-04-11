@@ -33,23 +33,60 @@ class Game{
       Global.vaccineSpent = Global.vaccineProdSpent + Global.vaccineImpSpent;
 
       // Vaccine Development
+
       Global.developing = Global.developingCurrent;
+
+      if (Global.vaccineExpired){
+        Global.vaccineExpired = false;
+      }
+
+      if (Global.developed && Global.developedWeeks < Global.vaccineExpiryNum){
+        Global.developedWeeks = Global.developedWeeks + 1;
+      }
+      else if (Global.developed && Global.developedWeeks == Global.vaccineExpiryNum){
+        Global.developed = false;
+        Global.developing = false;
+        Global.developingCurrent = false;
+        Global.vaccineExpired = true;
+        Global.developedWeeks = 0;
+        Global.vaccineDevWeek = 0;
+        Global.vaccineSpent = 0;
+        Global.vaccineProdSpent = 0;
+        Global.vaccineProdRate = 0;
+        Global.vaccineImpSpent = 0;
+        Global.vaccineImpSpent = 0;
+        Global.vaccineNum = 0;
+        Global.popVaccin = 0;
+      }
 
       if (Global.vaccineDevWeek >= 1 && Global.developing == true && Global.refunded == false){
         if (Global.vaccineDevWeek == 1){
+
           Global.developing = false;
+          Global.developingCurrent = false;
           Global.developed = true;
           Global.vaccineDevSpent = 0;
+          Global.vaccineDevWeek = 0;
+
+          // Initiates counter for the number of weeks vaccine is effective
+          Global.developedWeeks = 0;
+
+          // Creates the expiry week for vaccine
+          Random value = new Random();
+          int vaccineExp = value.Next(100, 250);
+          Global.vaccineExpiryNum = Rounding(Rnd.Dist(Convert.ToDouble(vaccineExp), 7), 0);
         }
         else{
           Global.vaccineDevWeek = Global.vaccineDevWeek - 1;
         }
         
       }
+      
 
       if (Global.refunded){
         Global.refunded = false;
         Global.vaccineDevSpent = 0;
+        Global.vaccineDevWeek = 0;
       }
 
       // Vaccine Production
@@ -59,11 +96,11 @@ class Game{
 
       // Vaccine Implementation
 
-      if (Global.vaccineNum >= Global.vaccineImpRate){
+      if (Global.vaccineNum >= Global.vaccineImpRate && Global.developed){
         Global.vaccineNum = Global.vaccineNum - Global.vaccineImpRate;
         Global.popVaccin = Global.popVaccin + Rounding(Global.vaccineImpRate * Rnd.Dist(0.95, 0.02), 0);
       }
-      else if (Global.vaccineNum > 0){
+      else if (Global.vaccineNum > 0 && Global.developed){
         Global.popVaccin = Global.popVaccin + Global.vaccineNum;
         Global.vaccineNum = 0;
         Global.vaccineImpRate = 0;

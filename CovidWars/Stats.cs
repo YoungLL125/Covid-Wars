@@ -130,10 +130,17 @@ class Stats{
     Console.WriteLine("\t    Total Deaths:\t{0}", Game.Rounding(Global.deaths, 0));
     
     Console.WriteLine("");
+    if (Global.vaccineExpired){
+      Console.ForegroundColor = ConsoleColor.Red;
+      Console.WriteLine(" Breaking News: A new mutated form of Covid 19 is discovered");
+      Console.WriteLine(" This renders all past vaccinations useless");
+      Console.WriteLine(" Please develop a new vaccine as soon as possible");
+      Console.WriteLine("");
+    }
     if (Global.protest){
       Console.ForegroundColor = ConsoleColor.Red;
       Console.WriteLine(" Warning: A protest has occured");
-      Console.WriteLine("\tProtest Deaths:\t{0}", Game.Rounding(Global.protestDeaths, 0));
+      Console.WriteLine("\t Protest Deaths:\t{0}", Game.Rounding(Global.protestDeaths, 0));
       Console.WriteLine("");
     }
     else{
@@ -143,7 +150,7 @@ class Stats{
     }
     if (Global.alertLvl > 0){
       Console.ForegroundColor = ConsoleColor.Cyan;
-      Console.WriteLine("\t   Alert Level:\t{0}", Global.alertLvl);
+      Console.WriteLine("\t     Alert Level:\t{0}", Global.alertLvl);
     }
     if (Global.vaccineNum > 0){
       Console.ForegroundColor = ConsoleColor.Green;

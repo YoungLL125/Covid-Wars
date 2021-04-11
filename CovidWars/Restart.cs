@@ -28,6 +28,11 @@ class Func0{
         Global.deathsWeek = 0;
         Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
 
+        // Protests
+        Global.protest = false;
+        Global.protestDeaths = 0;
+        Global.totalProtestDeaths = 0;
+
         // Consecutive Lockdowns after Active Cases Reaches 0
         Global.consecLock = 0;
 
