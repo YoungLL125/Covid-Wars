@@ -9,7 +9,7 @@ class Game{
     Console.Clear();
 
     // Calculates Total Money Spent
-    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent + Global.borderSpent;
+    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent + Global.borderSpent + Global.defenceSpent;
 
     if (Global.totalMoney >= Global.totalSpent && Global.gameEnd == false){
 
@@ -75,10 +75,6 @@ class Game{
         Global.vaccineImpSpent = 0;
       }
 
-      
-      
-
-
 
 
       // Main Variable Changing Methods
@@ -94,52 +90,29 @@ class Game{
       // Total Avaliable Money
       Global.totalMoney = Global.totalMoney + Global.weekRevenue;
 
-      // Active Cases
 
-      if (Global.alertLvl <= 4 && Global.alertLvl >= 1){
-        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.305);
+      // Protest Chance based on last week's Happiness
+      if (Global.happiness >= Rnd.Dist(12.5,20)){
+        Global.protest = false;
       }
       else{
-        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.6);  
+        Global.protest = true;
       }
       
-      Random random = new Random();
-
-      Global.borderCases = Rounding(random.Next(1,101), 0);
-
-      if (Global.borderCases > Global.borderCap){
-        Global.activeCases = Global.activeCases + (Global.borderCases - Global.borderCap);
+      if (Global.defenceRiotControl){
+        if (Global.happiness >= Rnd.Dist(0,10)){
+          Global.protest = false;
+        }
+        else{
+          Global.protest = true;
+        }
       }
-
-      
-
-      // Total Active Cases
-      Global.totalActiveCases = Global.activeCases + Global.borderCases;
-
-      // Total Cases
-      Global.totalCases = Global.totalCases + Global.activeCases + Global.borderCases;
-
-      // Death Rate
-      Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
-
-      // Weekly Deaths
-      Global.deathsWeek = Rnd.Dist((Global.dieRate/100) * Global.activeCases, 0.125);
-
-      // Total Deaths
-      Global.deaths = Global.deaths + Global.deathsWeek;
-
-      // Population Growth Rate
-      Global.popGrowthYear = Rnd.Dist(-1 * Math.Pow(0.985, Global.genHealthSpent - 155) + 0.056, 0.0001);
-      Global.popGrowth = Global.popGrowthYear/(365/7);
-
-      // Population
-      Global.population = Rnd.Dist(Global.population + Global.population * Global.popGrowth, 16);
-      Global.population = Global.population - Global.deathsWeek;
-
 
       // Happiness
-      if (Global.alertLvl >= 3){
-        if (Global.activeCases < Rnd.Dist(10, 1.7)){
+
+      // Decreases happiness due to prolonged lockdown
+      if (Global.alertLvl >= 4){
+        if (Global.activeCases < Rnd.Dist(5, 1.7)){
           Global.consecLock = Global.consecLock + 1;
         }
       }
@@ -147,8 +120,8 @@ class Game{
         Global.consecLock = 0;
       }
 
-      // Decreases happiness due to prolonged lockdown
-      if (Global.consecLock > Rnd.Dist(8, 0.35)){
+      
+      if (Global.consecLock > Rnd.Dist(5, 0.35)){
         Global.happiness = Global.happiness * Rnd.Dist(0.9, 0.0035);
       }
 
@@ -163,10 +136,100 @@ class Game{
         Global.happiness = Global.happiness * Rnd.Dist(0.825, 0.015);
       }
 
+      // Decreases happiness due to Forced Taxing rates
+      if (Global.taxPercent > 0){
+        Global.happiness = Global.happiness * Rnd.Dist(Global.taxPercent * 0.75, 0.015);
+      }
+
+
+      // Protests R0 Value
+      if (Global.protest){
+        Global.rValue = Rnd.Dist(5, 0.25);
+      }
+
+      // Active Cases
+
+      if (Global.alertLvl <= 4 && Global.alertLvl >= 1){
+        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.305);
+        if (Global.activeCases <= 1.5 && Global.alertLvl <= 3 && Global.alertLvl >= 1){
+          if (Rnd.Dist(0,1) < 1){
+            Global.activeCases = 0;
+          }
+          else{
+            Global.activeCases = 1;
+          }
+        }
+      }
+      else{
+        Global.activeCases = Rnd.Dist(Global.activeCases * Global.rValue, 0.6);  
+      }
+
+      // Border Cases
+      Global.borderCases = Rounding(Rnd.Dist(25, 35), 0);
+
+      if (Global.borderCases <= 0){
+        Global.borderCases = 0;
+      }
+
+      if (Global.borderCases > Global.borderCap){
+        Global.activeCases = Global.activeCases + (Global.borderCases - Global.borderCap);
+      }
+
+      if (Global.borderCases > Global.borderCap){
+        Global.borderCases = Global.borderCap;
+      }
+      
+
+      
+
+      // Total Active Cases
+      Global.totalActiveCases = Global.activeCases + Global.borderCases;
+
+      // Total Cases
+      Global.totalCases = Global.totalCases + Global.activeCases + Global.borderCases;
+
+      // Population Growth Rate
+      Global.popGrowthYear = Rnd.Dist(0.5 * Math.Log(Global.genHealthSpent + 10, 10) - 1.27, 0.0001);
+      Global.popGrowth = Global.popGrowthYear/(365/7);
+
+
+      // Other deaths
+      if (Global.popGrowthYear < 0){
+        Global.otherDeaths = Rounding(Global.population * Global.popGrowth * -1, 0);
+      }
+
+      if (Global.protest){
+        Global.protestDeaths = Global.population * (1 - Global.happiness/100) * Rnd.Dist(0.025, 0.002);
+        Global.totalProtestDeaths = Global.totalProtestDeaths + Global.protestDeaths;
+      }
+      else{
+        Global.protestDeaths = 0;
+      }
+
+      // Death Rate
+      Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
+
+      // Weekly Deaths
+      Global.deathsWeek = Rnd.Dist((Global.dieRate/100) * Global.activeCases, 0.125);
+
+      // Total Deaths
+      Global.deaths = Global.deaths + Global.deathsWeek + Global.otherDeaths;
+
+
+      // Population
+      Global.population = Rnd.Dist(Global.population + Global.population * Global.popGrowth, 16);
+      Global.population = Global.population - Global.deathsWeek - Global.protestDeaths;
       
 
       // Weekly Revenue
-      Global.weekRevenue = Game.Rounding(Rnd.Dist(125, 2), 2) * Global.population * Global.happiness/100 * 2/(Global.alertLvl + 2) * 0.000001;
+      if (Global.taxPercent == 0){
+        Global.weekRevenue = Game.Rounding(Rnd.Dist(185, 2), 2) * Global.population * Global.happiness/100 * 2/(Global.alertLvl + 2) * 0.000001;
+      }
+      else{
+        Global.weekRevenue = Game.Rounding(Rnd.Dist(185, 2), 2) * ((Global.population * (1 - Global.taxPercent)) * Global.happiness/100 * 2/(Global.alertLvl + 2) + Global.population * Global.taxPercent) * 0.000001;
+      }
+
+
       
 
       // Rounds Global values
@@ -176,10 +239,14 @@ class Game{
       Global.totalMoney = Rounding(Global.totalMoney, 2);
       Global.weekRevenue = Rounding(Global.weekRevenue, 1);
       Global.activeCases = Rounding(Global.activeCases, 0);
+      Global.borderCases = Rounding(Global.borderCases, 0);
       Global.totalCases = Rounding(Global.totalCases, 0);
       Global.deathsWeek = Rounding(Global.deathsWeek, 0);
       Global.deaths = Rounding(Global.deaths, 0);
+      Global.otherDeaths = Rounding(Global.otherDeaths, 0);
       Global.happiness = Rounding(Global.happiness, 1);
+      Global.protestDeaths = Rounding(Global.protestDeaths, 0);
+      Global.totalProtestDeaths = Rounding(Global.totalProtestDeaths, 0);
 
       // Constraints
       if (Global.population <= 0){
@@ -192,11 +259,14 @@ class Game{
       if (Global.activeCases >= Global.population - Global.popVaccin){
         Global.activeCases = Global.population - Global.popVaccin;
       }
-      if (Global.activeCases <= 0){
-        Global.activeCases = 0;
-      }
       if (Global.totalActiveCases - Global.borderCases > Global.population){
         Global.totalActiveCases = Global.borderCases + Global.activeCases;
+      }
+      if (Global.totalActiveCases <= 0){
+        Global.totalActiveCases = 0;
+      }
+      if (Global.activeCases <= 0){
+        Global.activeCases = 0;
       }
       if (Global.deaths <= 0){
         Global.deaths = 0;
@@ -388,7 +458,7 @@ class Game{
         }
       
       case 1:
-        output = Rounding(Rnd.Dist(2.2, 0.1333333), 2);
+        output = Rounding(Rnd.Dist(2, 0.1333333), 2);
         if (output > 0){
           return output;
         }
@@ -397,7 +467,7 @@ class Game{
         }
       
       case 2:
-        output = Rounding(Rnd.Dist(1.8, 0.1), 2);
+        output = Rounding(Rnd.Dist(1.25, 0.1), 2);
         if (output > 0){
           return output;
         }
@@ -406,7 +476,7 @@ class Game{
         }
       
       case 3:
-        output = Rounding(Rnd.Dist(0.9, 0.0833333), 2);
+        output = Rounding(Rnd.Dist(0.75, 0.0833333), 2);
         if (output > 0){
           return output;
         }

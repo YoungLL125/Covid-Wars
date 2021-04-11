@@ -44,12 +44,18 @@ class Global{
   public static double deaths;
   public static double deathsWeek;
   public static double dieRate;
+  public static double otherDeaths;
 
   // Consecutive weeks of Lockdown after Active cases reaches 0
   public static double consecLock;
 
   // Vaccinated people
   public static double popVaccin;
+
+  // Protest
+  public static bool protest;
+  public static double protestDeaths;
+  public static double totalProtestDeaths;
 
   // Game End
   public static bool gameEnd;
@@ -97,4 +103,12 @@ class Global{
   // Function 4 Border Restrictions
   public static double borderSpent;
   public static double borderCap;
+
+
+  // Function 5 Defence
+  public static double defenceSpent;
+  public static double defenceSpentRiot;
+  public static double defenceSpentTax;
+  public static bool defenceRiotControl;
+  public static double taxPercent;
 }

@@ -121,9 +121,9 @@ class Func3{
         Console.ForegroundColor = ConsoleColor.Yellow;
 
         if (Global.developed){
-            Console.WriteLine("\t(1)  3000 vaccines/week:\t$50 million");
-            Console.WriteLine("\t(2)  6000 vaccines/week:\t$100 million");
-            Console.WriteLine("\t(3) 10000 vaccines/week:\t$250 million");
+            Console.WriteLine("\t(1)  30000 vaccines/week:\t$50 million");
+            Console.WriteLine("\t(2)  60000 vaccines/week:\t$100 million");
+            Console.WriteLine("\t(3) 100000 vaccines/week:\t$250 million");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" Other:");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -186,9 +186,9 @@ class Func3{
         Console.ForegroundColor = ConsoleColor.Yellow;
 
         if (Global.developed && Global.vaccineNum > 0){
-            Console.WriteLine("\t(1)  1000 people/week:\t$100 million");
-            Console.WriteLine("\t(2)  5000 people/week:\t$250 million");
-            Console.WriteLine("\t(3) 10000 people/week:\t$500 million");
+            Console.WriteLine("\t(1)  10000 people/week:\t$100 million");
+            Console.WriteLine("\t(2)  50000 people/week:\t$250 million");
+            Console.WriteLine("\t(3) 100000 people/week:\t$500 million");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" Other:");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -487,15 +487,15 @@ class Func3{
             switch (input){
                 case 1:
                     Global.vaccineProdSpent = 50;
-                    Global.vaccineProdRate = 3000;
+                    Global.vaccineProdRate = 30000;
                     break;
                 case 2:
                     Global.vaccineProdSpent = 100;
-                    Global.vaccineProdRate = 6000;
+                    Global.vaccineProdRate = 60000;
                     break;
                 case 3:
                     Global.vaccineProdSpent = 250;
-                    Global.vaccineProdRate = 10000;
+                    Global.vaccineProdRate = 100000;
                     break;
                 case 4:
                     Global.vaccineProdSpent = 0;
@@ -590,15 +590,15 @@ class Func3{
             switch (input){
                 case 1:
                     Global.vaccineImpSpent = 100;
-                    Global.vaccineImpRate = 1000;
+                    Global.vaccineImpRate = 10000;
                     break;
                 case 2:
                     Global.vaccineImpSpent = 250;
-                    Global.vaccineImpRate = 5000;
+                    Global.vaccineImpRate = 50000;
                     break;
                 case 3:
                     Global.vaccineImpSpent = 500;
-                    Global.vaccineImpRate = 10000;
+                    Global.vaccineImpRate = 100000;
                     break;
                 case 4:
                     Global.vaccineImpRate = 0;

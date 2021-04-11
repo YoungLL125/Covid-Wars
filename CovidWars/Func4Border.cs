@@ -9,11 +9,12 @@ class Func4{
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(" Prevents border cases entering community");
+        Console.WriteLine(" Shows max amount of border cases \n the quaratine facilities can hold\n");
         Console.WriteLine(" Border Control Options:");
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("\t(1) Weak:\t$20 million");
-        Console.WriteLine("\t(2) Moderate:\t$50 million");
-        Console.WriteLine("\t(3) Strong:\t$100 million");
+        Console.WriteLine("\t(1)     Weak 50 max:\t$10 million");
+        Console.WriteLine("\t(2) Moderate 90 max:\t$50 million");
+        Console.WriteLine("\t(3)   Strong 110 max:\t$100 million");
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(" Other:");
@@ -23,7 +24,7 @@ class Func4{
         Console.WriteLine("");
         if (Global.borderSpent > 0){
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\t\t\tSpending: ${0}", Global.borderSpent);
+            Console.WriteLine("\t\t\tSpending: ${0} million", Global.borderSpent);
             Console.WriteLine("");
         }
         Console.ForegroundColor = ConsoleColor.White;
@@ -64,16 +65,16 @@ class Func4{
 
         switch (input){
             case 1:
-                Global.borderSpent = 20;
+                Global.borderSpent = 10;
                 Global.borderCap = 50;
                 break;
             case 2:
                 Global.borderSpent = 50;
-                Global.borderCap = 75;
+                Global.borderCap = 90;
                 break;
             case 3:
                 Global.borderSpent = 100;
-                Global.borderCap = 95;
+                Global.borderCap = 110;
                 break;
             case 4:
                 Global.borderSpent = 0;

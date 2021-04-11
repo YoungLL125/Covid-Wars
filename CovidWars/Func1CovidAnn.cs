@@ -46,6 +46,7 @@ class Func1{
       }
     }
     else{
+      Console.WriteLine(" Enables Alert Level change");
       Console.WriteLine(" Covid Announcement Option:");
       Console.ForegroundColor = ConsoleColor.Yellow;
       Console.WriteLine("\t(1) Covid Announcement Media:\t$10 million");

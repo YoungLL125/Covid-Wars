@@ -21,14 +21,18 @@ class Func0{
         Global.rValue = Game.Rounding(Rnd.Dist(2.5, 0.1666667), 2);
         Global.totalCases = 3;
         Global.activeCases = 3;
+        Global.borderCases = 3;
+        Global.totalActiveCases = 3;
         Global.deaths = 0;
+        Global.otherDeaths = 0;
+        Global.deathsWeek = 0;
         Global.dieRate = Game.Rounding(Rnd.Dist(3.4, 0.01666667), 2);
 
         // Consecutive Lockdowns after Active Cases Reaches 0
         Global.consecLock = 0;
 
         // Weekly Revenue
-        Global.weekRevenue = Game.Rounding(Rnd.Dist(125, 2), 2) * Global.population * Global.happiness/100 * 0.000001;
+        Global.weekRevenue = Game.Rounding(Rnd.Dist(185, 2), 2) * Global.population * Global.happiness/100 * 0.000001;
 
         // Game End
         Global.gameEnd = false;
@@ -56,6 +60,16 @@ class Func0{
         // Vaccine Implementation
         Global.vaccineImpSpent = 0;
         Global.vaccineImpRate = 0;
+
+        // Function 4 Border
+        Global.borderCap = 0;
+        Global.borderSpent = 0;
+
+        // Function 5
+        Global.defenceSpent = 0;
+        Global.defenceSpentRiot = 0;
+        Global.defenceSpentTax = 0;
+        Global.defenceRiotControl = false;
 
         Menu.Intro(false);
     }
