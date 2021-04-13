@@ -57,6 +57,9 @@ class Func0{
         Global.developing = false;
         Global.developed = false;
         Global.refunded = false;
+        Global.developedWeeks = 0;
+        Global.vaccineExpiryNum = 0;
+        Global.vaccineExpired = false;
 
         // Vaccine Production
         Global.vaccineProdSpent = 0;
@@ -68,6 +71,7 @@ class Func0{
 
         // Function 4 Border
         Global.borderCap = 0;
+        Global.borderQuaranCases = 0;
         Global.borderSpent = 0;
 
         // Function 5
@@ -75,6 +79,10 @@ class Func0{
         Global.defenceSpentRiot = 0;
         Global.defenceSpentTax = 0;
         Global.defenceRiotControl = false;
+
+        // Function 6
+        Global.educationSpent = 0;
+        Global.educationHappiness = 0;
 
         Menu.Intro(false);
     }

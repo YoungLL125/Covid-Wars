@@ -106,6 +106,7 @@ class Global{
   // Function 4 Border Restrictions
   public static double borderSpent;
   public static double borderCap;
+  public static double borderQuaranCases;
 
 
   // Function 5 Defence
@@ -114,4 +115,9 @@ class Global{
   public static double defenceSpentTax;
   public static bool defenceRiotControl;
   public static double taxPercent;
+
+
+  // Function 6 Education
+  public static double educationSpent;
+  public static double educationHappiness;
 }

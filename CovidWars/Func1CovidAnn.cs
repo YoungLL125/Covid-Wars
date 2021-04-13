@@ -8,6 +8,7 @@ class Func1{
   */
 
 
+  // Draws Menu
   public static void CovidAnnDraw(bool bought){
     Console.Clear();
 
@@ -203,6 +204,9 @@ class Func1{
         case 6:
           Menu.MenuProg();
           break;
+        default:
+          Menu.MenuProg();
+          break;
       }
     }
     else{
@@ -229,6 +233,9 @@ class Func1{
           break;
         
         case 3:
+          Menu.MenuProg();
+          break;
+        default:
           Menu.MenuProg();
           break;
 

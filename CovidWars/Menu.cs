@@ -54,14 +54,19 @@ class Menu{
       Console.ForegroundColor = ConsoleColor.Yellow;
     }
     Console.WriteLine("");
-    Console.Write("\t(5) Military             ");
+    Console.Write("\t(5) Military            ");
     if (Global.defenceSpent > 0){
       Console.ForegroundColor = ConsoleColor.Green;
       Console.Write("  Spending:  ${0} MM", Global.defenceSpent);
       Console.ForegroundColor = ConsoleColor.Yellow;
     }
     Console.WriteLine("");
-    Console.WriteLine("\t(6) Health Education");
+    Console.Write("\t(6) Health Education    ");
+    if (Global.educationSpent > 0){
+      Console.ForegroundColor = ConsoleColor.Green;
+      Console.Write("  Spending:  ${0} MM", Global.educationSpent);
+      Console.ForegroundColor = ConsoleColor.Yellow;
+    }
     Console.WriteLine("");
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine(" Other:");
@@ -162,6 +167,8 @@ class Menu{
         Func5.DefenceProg();
         break;
       case '6':
+        Func6.EducationProg();
+        break;
       case '7':
         Intro(true);
         break;

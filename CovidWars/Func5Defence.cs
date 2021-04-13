@@ -1,6 +1,8 @@
 using System;
 
 class Func5{
+
+    // Draws Menu
     public static void DefenceDraw(){
         Console.Clear();
 
@@ -22,9 +24,9 @@ class Func5{
         Console.WriteLine(" Tax Enforcement:");
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("");
-        Console.WriteLine("\t(1) Restrained 25%:\t2 million");
-        Console.WriteLine("\t(2) Demanding 50%:\t5 million");
-        Console.WriteLine("\t(3) Dictator 100%:\t10 million");
+        Console.WriteLine("\t(1) Restrained 25%:\t$2 million");
+        Console.WriteLine("\t(2) Demanding 50%:\t$5 million");
+        Console.WriteLine("\t(3) Dictator 100%:\t$10 million");
         Console.WriteLine("");
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(" Other:");
@@ -107,6 +109,9 @@ class Func5{
                 DefenceProg();
                 break;
             case 5:
+                Menu.MenuProg();
+                break;
+            default:
                 Menu.MenuProg();
                 break;
         }

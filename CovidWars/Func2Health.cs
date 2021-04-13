@@ -10,7 +10,7 @@ class Func2
     */
 
 
-
+      // Draws Menu
     public static void HealthDraw(){
         Console.Clear();
 
@@ -86,6 +86,9 @@ class Func2
                 break;
             
             case 3:
+                Menu.MenuProg();
+                break;
+            default:
                 Menu.MenuProg();
                 break;
         }

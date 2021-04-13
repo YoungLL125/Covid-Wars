@@ -9,7 +9,7 @@ class Game{
     Console.Clear();
 
     // Calculates Total Money Spent
-    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent + Global.borderSpent + Global.defenceSpent;
+    Global.totalSpent = Global.covidAnnSpent + Global.genHealthSpent + Global.vaccineSpent + Global.borderSpent + Global.defenceSpent + Global.educationSpent;
 
     if (Global.totalMoney >= Global.totalSpent && Global.gameEnd == false){
 
@@ -114,12 +114,14 @@ class Game{
 
 
 
-      // Main Variable Changing Methods
-      Global.rValue = RValue(Global.alertLvl);
 
       /*
       Main Background Calculations
       */
+
+
+
+
 
       // Week incrementer
       Global.week = Global.week + 1;
@@ -127,6 +129,8 @@ class Game{
       // Total Avaliable Money
       Global.totalMoney = Global.totalMoney + Global.weekRevenue;
 
+      // R Value
+      Global.rValue = RValue(Global.alertLvl);
 
       // Protest Chance based on last week's Happiness
       if (Global.happiness >= Rnd.Dist(12.5,20)){
@@ -145,20 +149,34 @@ class Game{
         }
       }
 
+      // Protests R0 Value
+      if (Global.protest){
+        Global.rValue = Rnd.Dist(5, 0.25);
+      }
+
+
       // Happiness
+
+
+
+      // Increases happiness by Health Education
+      if (Global.educationHappiness > 0){
+        Global.happiness = Global.happiness + Global.happiness * Global.educationHappiness;
+      }
 
       // Decreases happiness due to prolonged lockdown
       if (Global.alertLvl >= 4){
-        if (Global.activeCases < Rnd.Dist(5, 1.7)){
-          Global.consecLock = Global.consecLock + 1;
-        }
+        Global.consecLock = Global.consecLock + 1;
+      }
+      else if (Global.alertLvl >= 3){
+        Global.consecLock = Global.consecLock + 0.5;
       }
       else{
         Global.consecLock = 0;
       }
 
       
-      if (Global.consecLock > Rnd.Dist(5, 0.35)){
+      if (Global.consecLock > Rnd.Dist(8, 0.35)){
         Global.happiness = Global.happiness * Rnd.Dist(0.9, 0.0035);
       }
 
@@ -175,13 +193,7 @@ class Game{
 
       // Decreases happiness due to Forced Taxing rates
       if (Global.taxPercent > 0){
-        Global.happiness = Global.happiness * Rnd.Dist(Global.taxPercent * 0.75, 0.015);
-      }
-
-
-      // Protests R0 Value
-      if (Global.protest){
-        Global.rValue = Rnd.Dist(5, 0.25);
+        Global.happiness = Global.happiness - Global.happiness * Rnd.Dist(Global.taxPercent * 0.75, 0.015);
       }
 
       // Active Cases
@@ -203,17 +215,22 @@ class Game{
 
       // Border Cases
       Global.borderCases = Rounding(Rnd.Dist(25, 35), 0);
+      Global.borderQuaranCases = Global.borderCases;
 
       if (Global.borderCases <= 0){
         Global.borderCases = 0;
       }
 
-      if (Global.borderCases > Global.borderCap){
-        Global.activeCases = Global.activeCases + (Global.borderCases - Global.borderCap);
+      if (Global.borderQuaranCases <= 0){
+        Global.borderQuaranCases = 0;
       }
 
       if (Global.borderCases > Global.borderCap){
-        Global.borderCases = Global.borderCap;
+        Global.activeCases = Global.activeCases + (Global.borderQuaranCases - Global.borderCap);
+      }
+
+      if (Global.borderQuaranCases > Global.borderCap){
+        Global.borderQuaranCases = Global.borderCap;
       }
       
 
@@ -292,6 +309,12 @@ class Game{
       }
       if (Global.popVaccin >= Global.population){
         Global.popVaccin = Global.population;
+      }
+      if (Global.happiness >= 100){
+        Global.happiness = 100;
+      }
+      if (Global.happiness <= 0){
+        Global.happiness = 0;
       }
       if (Global.activeCases >= Global.population - Global.popVaccin){
         Global.activeCases = Global.population - Global.popVaccin;

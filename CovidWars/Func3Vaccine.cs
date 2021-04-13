@@ -9,7 +9,7 @@ class Func3{
     */
 
     
-
+      // Draws Menu
     public static void VaccineDraw(){
         Console.Clear();
 
@@ -274,6 +274,9 @@ class Func3{
             case 4:
                 Menu.MenuProg();
                 break;
+            default:
+                Menu.MenuProg();
+                break;
         }
     }
 
@@ -388,6 +391,9 @@ class Func3{
                     case 8:
                         VaccineProg();
                         break;
+                    default:
+                        Menu.MenuProg();
+                        break;
                 }
 
                 if (input >= 1 && input <= 7){
@@ -414,6 +420,9 @@ class Func3{
                         break;
                     case 2:
                         VaccineProg();
+                        break;
+                    default:
+                        Menu.MenuProg();
                         break;
                 }
             }
@@ -504,6 +513,9 @@ class Func3{
                 case 5:
                     VaccineProg();
                     break;
+                default:
+                    Menu.MenuProg();
+                    break;
             }
 
             if (input >= 1 && input <= 4){
@@ -522,6 +534,9 @@ class Func3{
         else{
             if (input == 1){
                 VaccineProg();
+            }
+            else{
+                Menu.MenuProg();
             }
         }
         

@@ -1,6 +1,8 @@
 using System;
 
 class Func4{
+
+    // Draws Menu
     public static void BorderDraw(){
         Console.Clear();
 
@@ -81,6 +83,9 @@ class Func4{
                 Global.borderCap = 0;
                 break;
             case 5:
+                Menu.MenuProg();
+                break;
+            default:
                 Menu.MenuProg();
                 break;
         }

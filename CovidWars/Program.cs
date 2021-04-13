@@ -72,6 +72,7 @@ namespace CovidWars
 
             // Function 4 Border
             Global.borderCap = 0;
+            Global.borderQuaranCases = 0;
             Global.borderSpent = 0;
 
             // Function 5
@@ -79,6 +80,10 @@ namespace CovidWars
             Global.defenceSpentRiot = 0;
             Global.defenceSpentTax = 0;
             Global.defenceRiotControl = false;
+
+            // Function 6
+            Global.educationSpent = 0;
+            Global.educationHappiness = 0;
 
             Menu.Intro(false);
         }
