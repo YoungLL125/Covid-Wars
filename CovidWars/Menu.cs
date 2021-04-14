@@ -198,7 +198,7 @@ class Menu{
     Console.WriteLine("");
     Console.WriteLine("\nWelcome to 21st century war fronts \nwhere Humanity fights against Covid-19. \n\nNew Zealand has by far the best control over \nCovid-19 compared to other countries. \nUnfortunately, since the world does NOT \nfight covid as well as New Zealand, \nnew strains of covid-19 appear randomly \ninto NZ when the borders are opened.");
 
-    // Thread.Sleep(3000);
+    Thread.Sleep(3000);
 
     Console.WriteLine("\n\nClick Enter to Continue...");
     Console.ReadLine();
@@ -207,7 +207,7 @@ class Menu{
     CovidWars();
     Console.WriteLine("\nIn this game, you are the leader of the NZ government\nfor managing Covid-19. \n\nYou are responsible for leading the country, \nprotecting the people \nand keeping the population happy and healthy.");
 
-    // Thread.Sleep(3000);
+    Thread.Sleep(3000);
 
     Console.WriteLine("\n\nClick Enter to Continue...");
     Console.ReadLine();
@@ -218,7 +218,7 @@ class Menu{
 
     Console.WriteLine("\nThe R value is the infection rate of the virus.");
 
-    // Thread.Sleep(3000);
+    Thread.Sleep(3000);
 
     if (!started){
       Console.WriteLine("\n\nClick Enter to Start...");
@@ -240,8 +240,6 @@ class Menu{
 
   /*
   Help Menu for more information
-
-  *** Under Construction ***
   */
 
 

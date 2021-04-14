@@ -177,7 +177,7 @@ class Game{
 
       
       if (Global.consecLock > Rnd.Dist(8, 0.35)){
-        Global.happiness = Global.happiness * Rnd.Dist(0.9, 0.0035);
+        Global.happiness = Global.happiness * Rnd.Dist(0.75, 0.03);
       }
 
       // Decreases happiness due to number of active cases
@@ -475,27 +475,6 @@ class Game{
     output = temp/(Math.Pow(10, rndValue + 1));
 
     return output;
-
-  }
-
-
-
-  // Calculates Current population
-
-  public static double Population(double popTotal, double popGrowth, double deaths){
-
-    double popCurrent = popTotal;
-
-    popCurrent = popCurrent - deaths;
-
-    popCurrent = popCurrent*popGrowth;
-
-    if (popCurrent < 1){
-      return 0;
-    }
-    else{
-      return Rounding(popCurrent, 0);
-    }
 
   }
 

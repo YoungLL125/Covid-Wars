@@ -2,20 +2,6 @@ using System;
 
 class Rnd {
 
-
-  // public static void Main (string[] args) {
-
-  //   Console.Clear();
-
-  //   // Generates 20 Random numbers that are normally distributed with a standard deviation of 1 and a mean of 0
-  //   for (int i = 0; i < 20; i++){
-  //     Console.WriteLine(Dist(0, 1));
-  //     Console.WriteLine("");
-  //   }
-  // }
-
-
-
   // Random number Normally distributed (Gaussian) Reference Website
   // https://gist.github.com/tansey/1444070
   public static double Dist(double mean, double stddev)
